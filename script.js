@@ -33,9 +33,9 @@ let dx = mouse.x - p.x;
 let dy = mouse.y - p.y;
 let dist = Math.sqrt(dx*dx + dy*dy);
 
-if(dist < 200){
-p.vx += dx * 0.0005;
-p.vy += dy * 0.0005;
+if(dist < 300){
+p.vx += dx * 0.001;
+p.vy += dy * 0.001;
 }
 
 p.x += p.vx;
@@ -53,48 +53,28 @@ requestAnimationFrame(animate);
 animate();
 
 
-// NETWORK
-const netCanvas = document.getElementById("networkCanvas");
-const netCtx = netCanvas.getContext("2d");
-
-netCanvas.width = window.innerWidth;
-netCanvas.height = 400;
-
-let nodes = [];
-
-for(let i=0;i<8;i++){
-nodes.push({
-x: Math.random()*netCanvas.width,
-y: Math.random()*400
-});
-}
-
-function drawNetwork(){
-netCtx.clearRect(0,0,netCanvas.width,400);
-
-nodes.forEach(a=>{
-nodes.forEach(b=>{
-let dx = a.x - b.x;
-let dy = a.y - b.y;
-let dist = Math.sqrt(dx*dx+dy*dy);
-
-if(dist < 200){
-netCtx.beginPath();
-netCtx.moveTo(a.x,a.y);
-netCtx.lineTo(b.x,b.y);
-netCtx.strokeStyle = "rgba(255,255,255,0.1)";
-netCtx.stroke();
+// REVEAL
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if(entry.isIntersecting){
+entry.target.classList.add('vis');
 }
 });
+},{threshold:0.2});
+
+document.querySelectorAll('[data-reveal]').forEach(el=>{
+observer.observe(el);
 });
 
-nodes.forEach(n=>{
-netCtx.beginPath();
-netCtx.arc(n.x,n.y,4,0,Math.PI*2);
-netCtx.fillStyle = "#a8e6cf";
-netCtx.fill();
-});
-requestAnimationFrame(drawNetwork);
-}
 
-drawNetwork();
+// PANEL INTERACTION
+document.querySelectorAll('.panel').forEach(panel => {
+panel.addEventListener('mousemove', e => {
+const rect = panel.getBoundingClientRect();
+const x = ((e.clientX - rect.left) / rect.width) * 100;
+const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+panel.style.setProperty('--mx', x + '%');
+panel.style.setProperty('--my', y + '%');
+});
+});
