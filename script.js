@@ -1,80 +1,102 @@
-// PARTICLES
-const canvas = document.getElementById("particleCanvas");
-const ctx = canvas.getContext("2d");
+const canvas = document.getElementById("gl");
+const gl = canvas.getContext("webgl");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let particles = [];
+gl.viewport(0, 0, canvas.width, canvas.height);
 
-for (let i = 0; i < 120; i++) {
-particles.push({
-x: Math.random() * canvas.width,
-y: Math.random() * canvas.height,
-vx: Math.random() - 0.5,
-vy: Math.random() - 0.5
-});
+// shaders
+const vertex = `
+attribute vec2 position;
+void main(){
+  gl_Position = vec4(position, 0.0, 1.0);
+}
+`;
+
+const fragment = `
+precision highp float;
+
+uniform vec2 resolution;
+uniform float time;
+uniform vec2 mouse;
+
+float circle(vec2 uv, vec2 pos, float r){
+  return smoothstep(r, r-0.01, length(uv-pos));
 }
 
-let mouse = {x: 0, y: 0};
+void main(){
+  vec2 uv = gl_FragCoord.xy / resolution.xy;
+  vec2 m = mouse / resolution;
 
-window.addEventListener("mousemove", e => {
-mouse.x = e.clientX;
-mouse.y = e.clientY;
-});
+  float d = 0.0;
 
-function animate() {
-ctx.fillStyle = "rgba(0,0,0,0.2)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
+  for(int i=0;i<6;i++){
+    float t = time * (0.3 + float(i)*0.1);
+    vec2 p = vec2(
+      0.5 + 0.25*cos(t + float(i)),
+      0.5 + 0.25*sin(t + float(i))
+    );
 
-particles.forEach(p => {
+    d += circle(uv, p + (m-0.5)*0.4, 0.2);
+  }
 
-let dx = mouse.x - p.x;
-let dy = mouse.y - p.y;
-let dist = Math.sqrt(dx*dx + dy*dy);
+  float col = smoothstep(0.2, 0.6, d);
 
-if(dist < 300){
-p.vx += dx * 0.001;
-p.vy += dy * 0.001;
+  vec3 color = mix(vec3(0.0), vec3(0.2,0.6,0.3), col);
+
+  gl_FragColor = vec4(color,1.0);
+}
+`;
+
+function compile(type, source){
+  const s = gl.createShader(type);
+  gl.shaderSource(s, source);
+  gl.compileShader(s);
+  return s;
 }
 
-p.x += p.vx;
-p.y += p.vy;
+const program = gl.createProgram();
+gl.attachShader(program, compile(gl.VERTEX_SHADER, vertex));
+gl.attachShader(program, compile(gl.FRAGMENT_SHADER, fragment));
+gl.linkProgram(program);
+gl.useProgram(program);
 
-ctx.beginPath();
-ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
-ctx.fillStyle = "#56ccf2";
-ctx.fill();
+const buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+-1,-1, 1,-1, -1,1,
+-1,1, 1,-1, 1,1
+]), gl.STATIC_DRAW);
+
+const pos = gl.getAttribLocation(program, "position");
+gl.enableVertexAttribArray(pos);
+gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+const uRes = gl.getUniformLocation(program, "resolution");
+const uTime = gl.getUniformLocation(program, "time");
+const uMouse = gl.getUniformLocation(program, "mouse");
+
+let mouse = [0,0];
+
+window.addEventListener("mousemove", e=>{
+  mouse[0] = e.clientX;
+  mouse[1] = canvas.height - e.clientY;
 });
 
-requestAnimationFrame(animate);
+function render(t){
+  gl.uniform2f(uRes, canvas.width, canvas.height);
+  gl.uniform1f(uTime, t*0.001);
+  gl.uniform2f(uMouse, mouse[0], mouse[1]);
+
+  gl.drawArrays(gl.TRIANGLES, 0, 6);
+  requestAnimationFrame(render);
 }
 
-animate();
+render();
 
-
-// REVEAL
-const observer = new IntersectionObserver(entries => {
-entries.forEach(entry => {
-if(entry.isIntersecting){
-entry.target.classList.add('vis');
-}
-});
-},{threshold:0.2});
-
-document.querySelectorAll('[data-reveal]').forEach(el=>{
-observer.observe(el);
-});
-
-
-// PANEL INTERACTION
-document.querySelectorAll('.panel').forEach(panel => {
-panel.addEventListener('mousemove', e => {
-const rect = panel.getBoundingClientRect();
-const x = ((e.clientX - rect.left) / rect.width) * 100;
-const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-panel.style.setProperty('--mx', x + '%');
-panel.style.setProperty('--my', y + '%');
-});
+window.addEventListener("resize", ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  gl.viewport(0,0,canvas.width,canvas.height);
 });
