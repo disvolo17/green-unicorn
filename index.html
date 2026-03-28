@@ -5,80 +5,62 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Everything is reborn</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <!-- HERO -->
-<section class="hero">
-<canvas id="particleCanvas"></canvas>
+<section id="s1">
+  <canvas id="particleCanvas"></canvas>
 
-<div class="hero-content">
-<h1>Everything is reborn</h1>
-<p>From waste to living soil</p>
-</div>
+  <div class="hero-morph"></div>
+
+  <div class="hero-body">
+    <h1>
+      <span class="hw"><span class="hc">Everything</span></span>
+      <span class="hw"><span class="hc">is</span></span>
+      <span class="hw"><span class="hc"><em>reborn</em></span></span>
+    </h1>
+
+    <p class="hero-sub">From waste to living soil</p>
+  </div>
 </section>
 
 <!-- TRANSFORMATION -->
-<section class="section">
-<h2>Transformation</h2>
+<section id="s2">
+  <h2>Transformation</h2>
 
-<div class="grid">
-<div class="card">Waste becomes soil</div>
-<div class="card">Soil becomes life</div>
-<div class="card">Nothing is lost</div>
-</div>
+  <div class="grid">
+    <div class="card" data-reveal>Waste becomes soil</div>
+    <div class="card" data-reveal>Soil becomes life</div>
+    <div class="card" data-reveal>Nothing is lost</div>
+  </div>
 </section>
 
 <!-- SYSTEM -->
-<section class="section system">
-<h2>The System</h2>
+<section id="s3">
+  <h2>The System</h2>
 
-<div class="system-grid">
+  <div class="panels">
 
-<div class="system-card">
-<h3>Production</h3>
-<p>Sludge → fertile soil</p>
-</div>
+    <div class="panel" data-reveal>
+      <h3>Production</h3>
+      <p>Sludge → fertile soil</p>
+    </div>
 
-<div class="system-card">
-<h3>Agriculture</h3>
-<p>1 hectare experimental land</p>
-</div>
+    <div class="panel" data-reveal>
+      <h3>Agriculture</h3>
+      <p>Experimental land</p>
+    </div>
 
-<div class="system-card">
-<h3>Science</h3>
-<p>Research. Validation. Knowledge.</p>
-</div>
+    <div class="panel" data-reveal>
+      <h3>Science</h3>
+      <p>Research & validation</p>
+    </div>
 
-</div>
-</section>
-
-<!-- IMPACT -->
-<section class="section">
-<h2>Impact</h2>
-
-<div class="grid">
-<div class="card">Food security</div>
-<div class="card">Waste reduction</div>
-<div class="card">New ecosystem</div>
-</div>
-</section>
-
-<!-- NETWORK -->
-<section class="section">
-<h2>Ecosystem</h2>
-
-<canvas id="networkCanvas"></canvas>
-
-<div class="grid">
-<div class="card">INOVEST / BIW</div>
-<div class="card">Arabian Gulf University</div>
-<div class="card">Green Unicorn</div>
-<div class="card">NIAD</div>
-</div>
+  </div>
 </section>
 
 <script src="script.js"></script>
