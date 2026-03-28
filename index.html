@@ -5,62 +5,75 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Everything is reborn</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<canvas id="gl"></canvas>
+
 <!-- HERO -->
-<section id="s1">
-  <canvas id="particleCanvas"></canvas>
-
-  <div class="hero-morph"></div>
-
-  <div class="hero-body">
-    <h1>
-      <span class="hw"><span class="hc">Everything</span></span>
-      <span class="hw"><span class="hc">is</span></span>
-      <span class="hw"><span class="hc"><em>reborn</em></span></span>
-    </h1>
-
-    <p class="hero-sub">From waste to living soil</p>
-  </div>
+<section class="hero">
+  <h1>Everything is <em>reborn</em></h1>
+  <p>Waste becomes soil. Soil becomes life.</p>
 </section>
 
 <!-- TRANSFORMATION -->
-<section id="s2">
+<section class="section">
   <h2>Transformation</h2>
-
   <div class="grid">
-    <div class="card" data-reveal>Waste becomes soil</div>
-    <div class="card" data-reveal>Soil becomes life</div>
-    <div class="card" data-reveal>Nothing is lost</div>
+    <div class="card">Wastewater becomes resource</div>
+    <div class="card">Sludge becomes fertile soil</div>
+    <div class="card">Nothing is discarded</div>
   </div>
 </section>
 
 <!-- SYSTEM -->
-<section id="s3">
+<section class="section">
   <h2>The System</h2>
-
   <div class="panels">
-
-    <div class="panel" data-reveal>
+    <div class="panel">
       <h3>Production</h3>
-      <p>Sludge → fertile soil</p>
+      <p>Biosolids → fertile soil</p>
     </div>
-
-    <div class="panel" data-reveal>
+    <div class="panel">
       <h3>Agriculture</h3>
-      <p>Experimental land</p>
+      <p>Experimental land & crop growth</p>
     </div>
-
-    <div class="panel" data-reveal>
+    <div class="panel">
       <h3>Science</h3>
-      <p>Research & validation</p>
+      <p>Research, validation, knowledge</p>
     </div>
-
   </div>
+</section>
+
+<!-- IMPACT -->
+<section class="section">
+  <h2>Impact</h2>
+  <div class="grid">
+    <div class="card">First GCC soil regeneration center</div>
+    <div class="card">New source of fertile soil</div>
+    <div class="card">Less landfill waste</div>
+    <div class="card">Scientific validation</div>
+  </div>
+</section>
+
+<!-- ECOSYSTEM -->
+<section class="section">
+  <h2>Ecosystem</h2>
+  <div class="grid">
+    <div class="card">INOVEST / BIW</div>
+    <div class="card">Arabian Gulf University</div>
+    <div class="card">Green Unicorn</div>
+    <div class="card">NIAD</div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="section final">
+  <h2>Nothing is wasted</h2>
+  <p>We transform disposal into resource.</p>
 </section>
 
 <script src="script.js"></script>
