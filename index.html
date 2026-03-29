@@ -1,81 +1,300 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Everything is reborn</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Green Unicorn | Digital Art Experience</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,900&amp;family=Manrope:wght@300;500;800&amp;family=Space+Grotesk:wght@300;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#2f372a",
+              "surface-dim": "#0e150a",
+              "surface": "#0e150a",
+              "tertiary-fixed-dim": "#9ed671",
+              "on-tertiary-fixed": "#0c2000",
+              "on-error-container": "#ffdad6",
+              "error-container": "#93000a",
+              "tertiary": "#b9f38a",
+              "surface-bright": "#333c2e",
+              "on-primary-fixed": "#0b2000",
+              "tertiary-fixed": "#b9f38b",
+              "on-primary-fixed-variant": "#2f4f17",
+              "surface-container": "#1a2216",
+              "on-secondary-fixed-variant": "#5b4300",
+              "error": "#ffb4ab",
+              "primary": "#c6efa5",
+              "background": "#0e150a",
+              "inverse-surface": "#dce6d2",
+              "secondary-fixed-dim": "#ebc161",
+              "inverse-primary": "#46672d",
+              "on-secondary-container": "#ffe1a3",
+              "surface-tint": "#abd28b",
+              "outline": "#8d9385",
+              "surface-container-highest": "#2f372a",
+              "inverse-on-surface": "#2a3326",
+              "surface-container-high": "#242c20",
+              "secondary-fixed": "#ffdf9c",
+              "outline-variant": "#43483d",
+              "on-primary": "#193702",
+              "on-primary-container": "#3a5b22",
+              "tertiary-container": "#9ed671",
+              "on-tertiary-container": "#2e5d02",
+              "on-surface": "#dce6d2",
+              "surface-container-lowest": "#091006",
+              "secondary": "#ebc161",
+              "on-tertiary": "#183800",
+              "on-secondary": "#3f2e00",
+              "primary-container": "#abd28b",
+              "on-error": "#690005",
+              "on-tertiary-fixed-variant": "#265100",
+              "on-surface-variant": "#c3c8b9",
+              "secondary-container": "#816101",
+              "on-background": "#dce6d2",
+              "primary-fixed": "#c6efa5",
+              "primary-fixed-dim": "#abd28b",
+              "surface-container-low": "#161e12",
+              "on-secondary-fixed": "#251a00"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.1); }
+        }
+        .bio-pulse {
+            animation: pulse-slow 8s infinite ease-in-out;
+        }
+        .liquid-mask {
+            mask-image: radial-gradient(circle at center, black 30%, transparent 70%);
+        }
+        ::-webkit-scrollbar { width: 0px; }
+        body { cursor: crosshair; }
+        .perspective-text { transform: perspective(1000px) rotateX(2deg); }
+    </style>
 </head>
-
-<body>
-
-<canvas id="gl"></canvas>
-
-<!-- HERO -->
-<section class="hero">
-  <h1>Everything is <em>reborn</em></h1>
-  <p>Waste becomes soil. Soil becomes life.</p>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary overflow-x-hidden">
+<!-- Bioluminescent Background Elements -->
+<div class="fixed inset-0 z-0 pointer-events-none">
+<div class="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-primary/10 rounded-full blur-[120px] bio-pulse"></div>
+<div class="absolute bottom-[-20%] right-[-5%] w-[70vw] h-[70vw] bg-secondary/5 rounded-full blur-[150px] bio-pulse" style="animation-delay: -4s;"></div>
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')] opacity-20 mix-blend-overlay"></div>
+</div>
+<!-- Shared Component: TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl flex justify-between items-center px-12 py-8 w-full shadow-[0_0_48px_rgba(14,21,10,0.4)] transition-colors duration-1000">
+<div class="text-2xl font-serif font-black text-[#c6efa5] tracking-tighter">Green Unicorn</div>
+<nav class="hidden md:flex gap-12 items-center">
+<a class="font-serif italic tracking-widest uppercase text-sm text-[#c6efa5] border-b-2 border-[#abd28b] pb-1 hover:scale-105 hover:brightness-125 transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]" href="#">Ecosystem</a>
+<a class="font-serif italic tracking-widest uppercase text-sm text-[#abd28b]/60 hover:text-[#c6efa5] transition-all duration-700 hover:scale-105 hover:brightness-125 ease-[cubic-bezier(0.2,0.8,0.2,1)]" href="#">Void</a>
+<a class="font-serif italic tracking-widest uppercase text-sm text-[#abd28b]/60 hover:text-[#c6efa5] transition-all duration-700 hover:scale-105 hover:brightness-125 ease-[cubic-bezier(0.2,0.8,0.2,1)]" href="#">Biolume</a>
+<a class="font-serif italic tracking-widest uppercase text-sm text-[#abd28b]/60 hover:text-[#c6efa5] transition-all duration-700 hover:scale-105 hover:brightness-125 ease-[cubic-bezier(0.2,0.8,0.2,1)]" href="#">Gallery</a>
+</nav>
+<button class="text-[#c6efa5] hover:scale-105 hover:brightness-125 transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+</header>
+<main class="relative z-10 pt-40">
+<!-- Hero Section: Kingdom of Bahrain -->
+<section class="min-h-screen flex flex-col justify-center px-12 md:px-24 mb-40">
+<div class="max-w-6xl relative">
+<span class="font-label text-secondary tracking-[0.4em] uppercase text-sm mb-6 block">Kingdom of Bahrain</span>
+<h1 class="font-headline text-[12vw] leading-[0.85] font-black italic tracking-tighter text-primary mb-12 mix-blend-difference">
+                    Waste <br/> <span class="ml-[10vw]">becomes life.</span>
+</h1>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-end">
+<p class="font-headline text-3xl md:text-5xl text-on-surface leading-tight font-light opacity-80 italic">
+                        The GCC's first circular soil system, emerging from the desert floor.
+                    </p>
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+<img class="w-full aspect-[4/5] object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-1000 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-2xl" data-alt="Macro view of glowing green moss and bioluminescent spores in a dark, humid forest floor environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcVNMtkgRPiCFFpZtGgWONrsD9OT6STH0GATUwsvQ2nL5jttO7gEkE2r-ehwaDv2ko4bEripW-INpDpfnictmMhD6fcrliZZmpFyjw-QK7Ck41u_dvEd58apOR3NlpeQu3_fT2FXLCxqhG5Nb5sqa3ptXIT6lkRiXfuirRjp81epehckmy2CGxihb_VMl7b0HFqfzxgGSSLc4J8nTrcMPVFYVMmZVSWJJEPAEAIFnVme6YshtS0tT18ZLHA96QHfVU7qAagpORPiM"/>
+</div>
+</div>
+</div>
 </section>
-
-<!-- TRANSFORMATION -->
-<section class="section">
-  <h2>Transformation</h2>
-  <div class="grid">
-    <div class="card">Wastewater becomes resource</div>
-    <div class="card">Sludge becomes fertile soil</div>
-    <div class="card">Nothing is discarded</div>
-  </div>
+<!-- Project Scope: The Void & The Bloom -->
+<section class="px-12 md:px-24 mb-60">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+<div class="md:col-span-5 pt-40">
+<div class="sticky top-40 space-y-12">
+<h2 class="font-headline text-7xl font-bold text-on-surface">1.5 Hectares <br/> <span class="text-secondary italic">of Rebirth</span></h2>
+<p class="font-body text-xl text-on-surface-variant max-w-md">Located within the Bahrain Investment Wharf (BIW), our site is a living laboratory where silence meets scientific precision.</p>
+<div class="flex gap-4">
+<button class="rounded-full bg-gradient-to-tr from-primary to-primary-container px-8 py-4 text-on-primary font-bold hover:scale-105 transition-transform duration-700">Explore Site Plan</button>
+</div>
+</div>
+</div>
+<div class="md:col-span-7 space-y-32">
+<div class="relative transform rotate-2 hover:rotate-0 transition-transform duration-1000">
+<img class="w-full rounded-xl shadow-[0_0_80px_rgba(198,239,165,0.15)]" data-alt="Aerial view of a circular sustainable garden plot amidst a dark, industrial landscape, glowing with soft green light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC46f73mYxfNOjgRRqtxZP34Zy1_40LAV0BkwtG1eQAELdbP1YBnV1FLoH65t5Y4h9aG3DD1PYEJl9yQhXVX5T3VKAjr4ClMSCXaeEQZTwE9TD-ctrjRoM7eTTdddbzgSZgEsaU4-CH8_MXh76v0lznKQJPobU4ZzMz2a8wisuJh_Ott284tLIIbPDLd5NAfKz8O9g63mGsZE-KpdPKQXsZyXmuEqSf8BCNZAKyXmdqGhGcjMhTz2pGAkdvCYClbgtpijIuwmZRqb4"/>
+<div class="absolute -bottom-10 -left-10 bg-surface-container-high/80 backdrop-blur-3xl p-8 rounded-xl border-l-4 border-secondary max-w-xs">
+<p class="font-label text-xs text-secondary mb-2">LOCATION DATA</p>
+<p class="font-body text-sm text-on-surface">Bahrain Investment Wharf (BIW). A nexus of industrial waste and agricultural future.</p>
+</div>
+</div>
+<div class="relative ml-auto w-4/5 transform -rotate-3 hover:rotate-0 transition-transform duration-1000">
+<img class="w-full rounded-xl brightness-75 hover:brightness-100 transition-all duration-1000" data-alt="Microscopic texture of rich black soil infused with neon green nutrients and organic life" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMH0lwbnUKXbJyeIGg9vBZkS1fEbyOZgA6PWDjL2cIpGpO2XCL8M80dPuzPnxZM2jNXmXwj0HrgHWXTtN5-OAFxi4S_8T0OPCMzsKVlGjsonhDJ0Rk_6uC0tbqM8MYvQqwRgPEbuCnQH4_C3Z7lzK-MIESwJvg5JE4UO0fLT3FNK1gFUR8CL6gduSF7gjbL4luavEwWoOVMJBlHz591lhEa47LBDHPt83SagRshUlOTsmas699wUUP-WzTNbcVQOyIKk-eAULAj54"/>
+</div>
+</div>
+</div>
 </section>
-
-<!-- SYSTEM -->
-<section class="section">
-  <h2>The System</h2>
-  <div class="panels">
-    <div class="panel">
-      <h3>Production</h3>
-      <p>Biosolids → fertile soil</p>
-    </div>
-    <div class="panel">
-      <h3>Agriculture</h3>
-      <p>Experimental land & crop growth</p>
-    </div>
-    <div class="panel">
-      <h3>Science</h3>
-      <p>Research, validation, knowledge</p>
-    </div>
-  </div>
+<!-- Modules Bento Grid: The Living Shadow -->
+<section class="px-12 md:px-24 mb-60">
+<h3 class="font-headline text-5xl mb-20 text-center">Operational <span class="italic font-light">Modules</span></h3>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<!-- Production Module -->
+<div class="md:col-span-2 bg-surface-container-low p-12 rounded-xl flex flex-col justify-between group hover:bg-surface-container transition-colors duration-700">
+<div>
+<span class="font-label text-primary text-xs tracking-widest mb-4 block">MODULE 01</span>
+<h4 class="font-headline text-4xl mb-6">Production Module</h4>
+<p class="text-on-surface-variant">The heart of the circular system. Converting urban waste into certified, high-grade fertile soil.</p>
+</div>
+<div class="mt-12 overflow-hidden rounded-lg">
+<img class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-1000" data-alt="Industrial glass vessels containing dark soil and bright green plant seedlings, laboratory aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfTSMXNyiWyIHbEubz1yM7OY7e2i_QCine5m6bnP3C2uE_rbSMLXNc0s4IhEKo6OpYwSEWGIdiDPeXLr0XXq8JNpr0nF5Bm1Istfw365RvYShMCYWYFPuj42mY1h2hrzpefga623tPXROuNWV2i7dK6cqVyaTOA2lVTWeksBCQ2B2m0MfK8v24Z0DMMX21lwJfsZZ84RxjwEHBePV-oWoiGT9C273vVkF0PO8zsZO_pvkns1JZ3a5gcF0vfiwEu7ov31jp2SnsFgs"/>
+</div>
+</div>
+<!-- Scientific Lab -->
+<div class="bg-surface-container-highest/20 backdrop-blur-md p-10 rounded-xl border border-outline-variant/10 flex flex-col items-center text-center justify-center">
+<span class="material-symbols-outlined text-secondary text-5xl mb-6" style="font-variation-settings: 'FILL' 1;">science</span>
+<h4 class="font-headline text-2xl mb-4">Scientific Laboratory</h4>
+<p class="font-label text-xs uppercase tracking-widest text-secondary">600 m2 Center</p>
+</div>
+<!-- Experimental Site -->
+<div class="bg-surface-container-low p-10 rounded-xl flex flex-col justify-between relative overflow-hidden">
+<div class="z-10">
+<h4 class="font-headline text-2xl mb-4">Experimental Site</h4>
+<p class="text-sm opacity-60 italic">1 Hectare trial field with a 40cm fertile layer, testing the limits of growth.</p>
+</div>
+<div class="absolute bottom-0 right-0 w-32 h-32 bg-primary/20 blur-2xl rounded-full translate-x-1/2 translate-y-1/2"></div>
+</div>
+</div>
 </section>
-
-<!-- IMPACT -->
-<section class="section">
-  <h2>Impact</h2>
-  <div class="grid">
-    <div class="card">First GCC soil regeneration center</div>
-    <div class="card">New source of fertile soil</div>
-    <div class="card">Less landfill waste</div>
-    <div class="card">Scientific validation</div>
-  </div>
+<!-- Ecosystem Pulse -->
+<section class="relative py-40 overflow-hidden bg-surface-container-lowest">
+<div class="absolute inset-0 bio-pulse opacity-5 bg-primary/30"></div>
+<div class="px-12 md:px-24 relative z-10">
+<div class="max-w-4xl mx-auto text-center mb-32">
+<h2 class="font-headline text-6xl mb-8">The Neural Network</h2>
+<p class="font-body text-xl opacity-60">Success is a collective rhythm. Our ecosystem thrives through strategic biological and scientific symbiosis.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-16 items-center grayscale opacity-50 hover:grayscale-0 transition-all duration-1000">
+<span class="font-label text-2xl tracking-[0.2em]">NIAD</span>
+<span class="font-label text-2xl tracking-[0.2em]">Arabian Gulf University</span>
+<span class="font-label text-2xl tracking-[0.2em]">INOVEST/BIW</span>
+<span class="font-label text-2xl tracking-[0.2em]">Dr. Abdel Hadi</span>
+</div>
+</div>
 </section>
-
-<!-- ECOSYSTEM -->
-<section class="section">
-  <h2>Ecosystem</h2>
-  <div class="grid">
-    <div class="card">INOVEST / BIW</div>
-    <div class="card">Arabian Gulf University</div>
-    <div class="card">Green Unicorn</div>
-    <div class="card">NIAD</div>
-  </div>
+<!-- Strategic Objectives -->
+<section class="px-12 md:px-24 py-60">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-40">
+<div class="space-y-24">
+<div class="group">
+<span class="font-label text-secondary block mb-4">OBJECTIVE_01</span>
+<h5 class="font-headline text-5xl mb-6 group-hover:translate-x-4 transition-transform duration-700">Food Security</h5>
+<div class="h-px w-full bg-outline-variant/30 relative">
+<div class="absolute inset-y-0 left-0 w-0 bg-secondary group-hover:w-full transition-all duration-1000"></div>
+</div>
+</div>
+<div class="group">
+<span class="font-label text-secondary block mb-4">OBJECTIVE_02</span>
+<h5 class="font-headline text-5xl mb-6 group-hover:translate-x-4 transition-transform duration-700">Land Management</h5>
+<div class="h-px w-full bg-outline-variant/30 relative">
+<div class="absolute inset-y-0 left-0 w-0 bg-secondary group-hover:w-full transition-all duration-1000"></div>
+</div>
+</div>
+<div class="group">
+<span class="font-label text-secondary block mb-4">OBJECTIVE_03</span>
+<h5 class="font-headline text-5xl mb-6 group-hover:translate-x-4 transition-transform duration-700">Model Export</h5>
+<div class="h-px w-full bg-outline-variant/30 relative">
+<div class="absolute inset-y-0 left-0 w-0 bg-secondary group-hover:w-full transition-all duration-1000"></div>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-square rounded-full border border-primary/20 p-12 flex items-center justify-center animate-spin-slow" style="animation: spin 60s linear infinite;">
+<img class="w-full h-full object-cover rounded-full mix-blend-screen opacity-60" data-alt="Deep green forest mountains shrouded in thick mist and glowing light rays, ethereal mood" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWeknWBi5cuSL_ADuXVsCKviA7361NP1MApFx41Pks_NuwdP5JZvDwtLYKiCGmmGhr0ziyJav1BaOKH_fEKHkjybokR0sW255U7Q3TIdwhy5wLSggiIKMF-5iZ9uVWaTtTHsWrnATPzdn4FlWjZ7N8G7fhbIc6YzklB0kMMENK0f7g7oa0BXRZgT64QjaEpsmn9IxUW1ZzxLHVGqnYLhDGh10rgVv98dXyNF2rll_cwsik1rlwiT7UHAhDsqZkbS-SpRBGX3xBlbs"/>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="text-center">
+<p class="font-label text-primary text-4xl font-bold">GCC</p>
+<p class="font-label text-sm opacity-40">Standardized Future</p>
+</div>
+</div>
+</div>
+</div>
 </section>
-
-<!-- FINAL -->
-<section class="section final">
-  <h2>Nothing is wasted</h2>
-  <p>We transform disposal into resource.</p>
-</section>
-
-<script src="script.js"></script>
-</body>
-</html>
+</main>
+<!-- Shared Component: SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-8 z-[60] bg-[#0e150a]/90 backdrop-blur-3xl h-full w-80 rounded-r-[3rem] border-r border-[#abd28b]/10 shadow-[50px_0_100px_rgba(0,0,0,0.8)] hidden lg:flex transition-transform duration-1000 -translate-x-full hover:translate-x-0 group">
+<div class="mb-12 flex items-center gap-4">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-surface">
+<span class="material-symbols-outlined">eco</span>
+</div>
+<div>
+<p class="font-serif text-[#c6efa5] text-xl">The Living Shadow</p>
+<p class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">Deep Forest Floor</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-4 bg-[#abd28b]/20 text-[#c6efa5] rounded-full px-6 py-3 border-l-4 border-[#ebc161] font-serif text-lg hover:translate-x-2 transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]" href="#">
+<span class="material-symbols-outlined">explore</span> Expedition
+            </a>
+<a class="flex items-center gap-4 text-[#abd28b]/40 hover:text-[#abd28b] px-6 py-3 font-serif text-lg hover:translate-x-2 transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]" href="#">
+<span class="material-symbols-outlined">database</span> Archives
+            </a>
+<a class="flex items-center gap-4 text-[#abd28b]/40 hover:text-[#abd28b] px-6 py-3 font-serif text-lg hover:translate-x-2 transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]" href="#">
+<span class="material-symbols-outlined">sensors</span> Pulse
+            </a>
+<a class="flex items-center gap-4 text-[#abd28b]/40 hover:text-[#abd28b] px-6 py-3 font-serif text-lg hover:translate-x-2 transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]" href="#">
+<span class="material-symbols-outlined">waves</span> Drift
+            </a>
+</nav>
+<!-- Custom liquid-glow indicator for side nav visibility -->
+<div class="absolute top-1/2 -right-4 w-8 h-32 bg-primary/20 rounded-full blur-xl group-hover:opacity-0 transition-opacity"></div>
+</aside>
+<!-- Floating Bio-Action Button -->
+<button class="fixed bottom-12 right-12 z-[70] w-20 h-20 rounded-full bg-tertiary-container text-on-tertiary shadow-[0_0_40px_rgba(158,214,113,0.4)] flex items-center justify-center hover:scale-110 transition-all duration-500 group animate-pulse-slow">
+<span class="material-symbols-outlined text-4xl group-hover:rotate-90 transition-transform duration-700">add</span>
+<div class="absolute -top-12 right-0 bg-surface-container-high px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+<span class="font-label text-xs text-primary">INITIATE GROWTH</span>
+</div>
+</button>
+<!-- Shared Component: Footer -->
+<footer class="relative w-full pt-40 pb-20 bg-gradient-to-t from-[#091006] via-[#0e150a] to-transparent flex flex-col items-center gap-8 px-4 w-full">
+<div class="flex flex-wrap justify-center gap-12 mb-12">
+<a class="font-mono text-[10px] uppercase tracking-[0.3em] text-[#abd28b]/30 hover:text-[#c6efa5] hover:tracking-[0.5em] transition-all duration-1000" href="#">Manifesto</a>
+<a class="font-mono text-[10px] uppercase tracking-[0.3em] text-[#abd28b]/30 hover:text-[#c6efa5] hover:tracking-[0.5em] transition-all duration-1000" href="#">The Ecosystem</a>
+<a class="font-mono text-[10px] uppercase tracking-[0.3em] text-[#abd28b]/30 hover:text-[#c6efa5] hover:tracking-[0.5em] transition-all duration-1000" href="#">Privacy</a>
+<a class="font-mono text-[10px] uppercase tracking-[0.3em] text-[#ebc161] hover:tracking-[0.5em] transition-all duration-1000" href="#">Deep Sleep</a>
+</div>
+<div class="text-center space-y-4">
+<p class="font-mono text-[10px] uppercase tracking-[0.3em] text-[#abd28b]">© 2024 Green Unicorn. Dissolving into the Void.</p>
+</div>
+</footer>
+<!-- Mouse Interaction Glow Overlay -->
+<div class="fixed inset-0 pointer-events-none z-[100] transition-opacity duration-1000 opacity-0 bg-[radial-gradient(circle_at_var(--x)_var(--y),rgba(198,239,165,0.08)_0%,transparent_50%)]" id="mouse-glow"></div>
+<script>
+        // Simple mouse tracking for the glow effect
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.getElementById('mouse-glow');
+            glow.style.opacity = '1';
+            glow.style.setProperty('--x', e.clientX + 'px');
+            glow.style.setProperty('--y', e.clientY + 'px');
+        });
+    </script>
+</body></html>
